@@ -19,7 +19,7 @@ jobs:
         python-version: '3.8'  # Adjust to your Python version
         
     - name: Change directory
-      run: cd starter/
+      run: cd starter
 
     - name: list items
       run: ls
