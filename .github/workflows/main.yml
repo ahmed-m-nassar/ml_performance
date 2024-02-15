@@ -1,0 +1,27 @@
+name: Run pytest on push
+
+on:
+  push:
+    branches:
+      - main  # Adjust to your main branch name
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'  # Adjust to your Python version
+      
+    - name: Install dependencies
+      run: pip install -r starter/requirements.txt
+
+    - name: Run pytest
+      run: |
+        cd starter
+        pytest starter
