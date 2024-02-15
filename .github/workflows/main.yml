@@ -19,7 +19,7 @@ jobs:
         python-version: '3.8'  # Adjust to your Python version
         
     - name: Change directory
-      run: cd path/to/your/directory
+      run: cd starter/
 
     - name: Install dependencies
       run: pip install -r requirements.txt
