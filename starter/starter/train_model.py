@@ -8,9 +8,9 @@ import joblib
 import os
 
 # Add the necessary imports for the starter code.
-
+print(os.getcwd())
 # Add code to load in the data.
-data = pd.read_csv("nd0821-c3-starter-code//starter//data//census.csv")
+data = pd.read_csv("..//data//census.csv")
 data.rename(columns=lambda x: x.replace(' ', ''), inplace=True)
 
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
@@ -31,12 +31,14 @@ X_train, y_train, encoder, lb = process_data(
 )
 # Train and save a model.
 model = train_model(X_train,y_train)
-model_filename = 'nd0821-c3-starter-code//starter//model//trained_model.pkl'
-encoder_filename = 'nd0821-c3-starter-code//starter//model//encoder.pkl'
+model_filename = '..//model//trained_model.pkl'
+encoder_filename = '..//model//encoder.pkl'
+lb_filename = '..//model//lb.pkl'
 
 # Save the trained model to disk
 joblib.dump(model, model_filename)
 joblib.dump(encoder, encoder_filename)
+joblib.dump(lb, lb_filename)
 
 # Proces the test data with the process_data function.
 # model = joblib.load("nd0821-c3-starter-code//starter//model//trained_model.pkl")
