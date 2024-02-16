@@ -23,5 +23,5 @@ jobs:
 
     - name: Run pytest
       run: |
-        cd starter/unit_test
+        cd starter/unit_tests
         pytest test.py
