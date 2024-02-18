@@ -68,4 +68,7 @@ if __name__ == "__main__":
     data = pd.read_csv("..//data//census.csv")
     data.rename(columns=lambda x: x.replace(' ', ''), inplace=True)
     
-    print(compute_performance_on_slices(model = model ,data = data, encoder = encoder , lb = lb, feature_name= 'education'))
+    result = compute_performance_on_slices(model = model ,data = data, encoder = encoder , lb = lb, feature_name= 'education')
+    with open("slice_output.txt", 'w') as f:
+        for key, value in result.items():
+            f.write(f"{key}: {value}\n")
