@@ -21,7 +21,12 @@ jobs:
     - name: Install dependencies
       run: pip install -r starter/requirements.txt
 
-    - name: Run pytest
+    - name: Run model tests
       run: |
         cd starter/unit_tests
         pytest test.py
+
+    - name: Run api tests
+      run: |
+        cd starter/unit_tests
+        pytest api_tests.py
