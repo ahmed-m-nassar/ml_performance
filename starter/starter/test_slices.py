@@ -1,8 +1,13 @@
 import numpy as np
 import pandas as pd
-from ml.model import inference , compute_model_metrics 
-from ml.data import process_data
+
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..' , '..'))
+sys.path.insert(0, root_dir)
+
+from starter.starter.ml.model import inference , compute_model_metrics 
+from starter.starter.ml.data import process_data
 import joblib
+import os
 
 def compute_performance_on_slices(model ,data, encoder , lb,  feature_name):
     """
@@ -49,6 +54,7 @@ def compute_performance_on_slices(model ,data, encoder , lb,  feature_name):
         indices = data[feature_name] == value
         
         X_slice = X_processed[indices]
+        #print(X_slice)
         y_slice = y_processed[indices]
 
         # Compute model metrics for the slice
@@ -61,14 +67,25 @@ def compute_performance_on_slices(model ,data, encoder , lb,  feature_name):
     return slice_metrics
 
 if __name__ == "__main__":
-    model = joblib.load("..//model//trained_model.pkl")
-    encoder = joblib.load("..//model//encoder.pkl")
-    lb = joblib.load("..//model//lb.pkl")
+    current_directory = os.path.dirname(__file__)
+    
+    data_path = os.path.join(current_directory, '..', 'data', 'census.csv')
+    model_path = os.path.join(current_directory, '..', 'model', 'trained_model.pkl')
+    encoder_path = os.path.join(current_directory, '..', 'model', 'encoder.pkl')
+    lb_path = os.path.join(current_directory, '..', 'model', 'lb.pkl')
+    
 
-    data = pd.read_csv("..//data//census.csv")
+    model = joblib.load(model_path)
+    encoder = joblib.load(encoder_path)
+    lb = joblib.load(lb_path)
+
+    data = pd.read_csv(data_path)
     data.rename(columns=lambda x: x.replace(' ', ''), inplace=True)
     
-    result = compute_performance_on_slices(model = model ,data = data, encoder = encoder , lb = lb, feature_name= 'education')
+    #print(data.info())
+    np.set_printoptions(threshold=np.inf)
+
+    result = compute_performance_on_slices(model = model ,data = data, encoder = encoder , lb = lb, feature_name= 'workclass')
     with open("slice_output.txt", 'w') as f:
         for key, value in result.items():
             f.write(f"{key}: {value}\n")

@@ -8,9 +8,10 @@ from sklearn.datasets import make_classification
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
-parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-sys.path.append(parent_dir)
-from  starter.ml.model import inference , compute_model_metrics , train_model
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..' , '..'))
+sys.path.insert(0, root_dir)
+
+from  starter.starter.ml.model import inference , compute_model_metrics , train_model
 
 def test_inference():
     # Define a sample machine learning model (you may need to adjust this)
