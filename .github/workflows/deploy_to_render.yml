@@ -2,7 +2,7 @@ name: Deploy to Render
 
 on:
   workflow_run:
-    workflows: ["main.yml"]
+    workflows: ["Run pytest on push"]
     types:
       - completed
 
