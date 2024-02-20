@@ -7,7 +7,6 @@ root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.insert(0, root_dir)
 
 
-
 # Test case 1: Test prediction for a sample input
 if __name__ == "__main__":
     # Sample input data
@@ -27,12 +26,9 @@ if __name__ == "__main__":
             "hours_per_week": 40,
             "native_country": " Germany"
         }
-    
     url = "https://ml-performance.onrender.com/predict"
-    
     response = requests.post(url, json=data)
     # Send POST request to the /predict endpoint
-
     # Check if the request was successful (status code 200)
-    print("response code : " + str(response.status_code)) 
-    print("response json : " + str (response.json()) )
+    print("response code : " + str(response.status_code))
+    print("response json : " + str(response.json()))
