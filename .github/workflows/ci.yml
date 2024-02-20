@@ -53,6 +53,7 @@ jobs:
       run: flake8
 
   deploy:
+    needs: ["test" , "flake8"]
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Render Deploy
