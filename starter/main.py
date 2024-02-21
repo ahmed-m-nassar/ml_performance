@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from pydantic import BaseModel , Field
+from pydantic import BaseModel, Field
 import joblib
 import numpy as np
 import os
